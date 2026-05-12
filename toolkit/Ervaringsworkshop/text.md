@@ -1,0 +1,1 @@
+Ervaringsworkshops zijn interactieve sessies om studenten bewust te maken van de gevolgen van een beperking. 

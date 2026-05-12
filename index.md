@@ -10,52 +10,75 @@ De toolkit is opgebouwd aan de hand van de door Stichting Accessibility opgebouw
 
 ## Materialen
 
-### 0. Algemeen
-- Introductie en uitleg van de toolkit
+<div id="toolkit-dynamic"></div>
+<script>
+  const REPO   = 'AccessibilityNL/Accessibility-Teaching-Toolkit';
+  const BRANCH = 'main';
+  const ROOT   = 'toolkit';
 
-### 1. Kennis
-Doel: basiskennis opbouwen
+  fetch(`https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`)
+    .then(r => r.json())
+    .then(async data => {
+      if (!data.tree) throw new Error(JSON.stringify(data));
 
-- Presentaties
-- Video’s
-- Handleidingen en bronnen
+      // Group files by subfolder
+      const folders = {};
+      data.tree
+        .filter(item => item.type === 'blob' && item.path.startsWith(ROOT + '/'))
+        .forEach(item => {
+          const parts = item.path.slice(ROOT.length + 1).split('/');
+          if (parts.length !== 2) return;           // skip root-level or deeply nested
+          const [folder, filename] = parts;
+          if (!folders[folder]) folders[folder] = { text: null, files: [] };
+          if (filename === 'text.md') {
+            folders[folder].text = item.path;
+          } else {
+            folders[folder].files.push({ name: filename, path: item.path });
+          }
+        });
 
-### 2. Ervaringsopdrachten
-Doel: bewustwording door ervaring
+      const container = document.getElementById('toolkit-dynamic');
+      container.innerHTML = '';
 
-- Oefeningen zonder materialen
-- Oefeningen met materialen (incl. bestel-links)
-- Workshop-opzet
+      for (const [folder, contents] of Object.entries(folders)) {
+        const section = document.createElement('div');
+        section.innerHTML = `<h3>${folder}</h3>`;
 
-### 3. Collega’s overtuigen
-Doel: draagvlak creëren
+        // Fetch text.md — fail gracefully per folder
+        if (contents.text) {
+          try {
+            const rawUrl = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${contents.text}`;
+            const mdText = await fetch(rawUrl).then(r => {
+              if (!r.ok) throw new Error(`HTTP ${r.status}`);
+              return r.text();
+            });
+            const p = document.createElement('p');
+            p.textContent = mdText;
+            section.appendChild(p);
+          } catch (e) {
+            console.warn(`Could not load text.md for ${folder}:`, e);
+          }
+        }
 
-- Gespreksstarters
-- Mini-activiteiten
-- Argumenten-kaarten
-- Tips voor teamaanpak
+        // Download list
+        if (contents.files.length > 0) {
+          const ul = document.createElement('ul');
+          contents.files.forEach(file => {
+            const rawUrl = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${file.path}`;
+            ul.innerHTML += `<li><a href="${rawUrl}" download="${file.name}">${file.name}</a></li>`;
+          });
+          section.appendChild(ul);
+        }
 
-### 4. Integratie in curriculum
-Doel: structurele inbedding in onderwijs
+        container.appendChild(section);
+      }
 
-- Leeruitkomsten
-- Checklists voor projecten
-- Opdrachten en casussen
-- Toetscriteria en rubrics
-
-### 5. Roadmap voor docenten
-Doel: stapsgewijze ontwikkeling
-
-- Quick-scan en groeipad
-- Concrete acties (nu, korte termijn)
-- Focus op:
-  - Basisbegrip
-  - Lesontwerp
-  - Teamadoptie
-  - Borging
-
-### 6. Community
-Doel: ondersteuning en kennisdeling
-
-- Teams-kanaal
-- Train-de-trainer sessies
+      if (container.children.length === 0) {
+        container.innerHTML = '<em>No toolkit folders found.</em>';
+      }
+    })
+    .catch(err => {
+      document.getElementById('toolkit').innerHTML =
+        `<strong>Error:</strong> <code>${err.message}</code>`;
+    });
+</script>
