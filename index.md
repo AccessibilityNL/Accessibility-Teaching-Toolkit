@@ -10,75 +10,156 @@ De toolkit is opgebouwd aan de hand van de door Stichting Accessibility opgebouw
 
 ## Materialen
 
-<div id="toolkit-dynamic"></div>
+
 <script>
-  const REPO   = 'AccessibilityNL/Accessibility-Teaching-Toolkit';
-  const BRANCH = 'main';
-  const ROOT   = 'toolkit';
+const REPO   = 'AccessibilityNL/Accessibility-Teaching-Toolkit';
+const BRANCH = 'main';
+const ROOT   = 'toolkit';
 
-  fetch(`https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`)
-    .then(r => r.json())
-    .then(async data => {
-      if (!data.tree) throw new Error(JSON.stringify(data));
+const CACHE_KEY = 'toolkit-cache-v1';
+const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
 
-      // Group files by subfolder
-      const folders = {};
-      data.tree
-        .filter(item => item.type === 'blob' && item.path.startsWith(ROOT + '/'))
-        .forEach(item => {
-          const parts = item.path.slice(ROOT.length + 1).split('/');
-          if (parts.length !== 2) return;           // skip root-level or deeply nested
-          const [folder, filename] = parts;
-          if (!folders[folder]) folders[folder] = { text: null, files: [] };
-          if (filename === 'text.md') {
-            folders[folder].text = item.path;
+async function fetchTree() {
+  const cached = localStorage.getItem(CACHE_KEY);
+  if (cached) {
+    const parsed = JSON.parse(cached);
+    if (Date.now() - parsed.time < CACHE_TTL) {
+      return parsed.data;
+    }
+  }
+
+  const res = await fetch(`https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`);
+  const data = await res.json();
+
+  if (!data.tree) throw new Error('Invalid GitHub response');
+
+  localStorage.setItem(CACHE_KEY, JSON.stringify({
+    time: Date.now(),
+    data
+  }));
+
+  return data;
+}
+
+function buildTree(treeData) {
+  const root = { name: ROOT, children: {}, files: [], text: null };
+
+  treeData
+    .filter(item => item.type === 'blob' && item.path.startsWith(ROOT + '/'))
+    .forEach(item => {
+      const parts = item.path.split('/').slice(1);
+      let current = root;
+
+      parts.forEach((part, index) => {
+        const isFile = index === parts.length - 1;
+
+        if (isFile) {
+          if (part === 'text.md') {
+            current.text = item.path;
           } else {
-            folders[folder].files.push({ name: filename, path: item.path });
+            current.files.push({ name: part, path: item.path });
           }
-        });
-
-      const container = document.getElementById('toolkit-dynamic');
-      container.innerHTML = '';
-
-      for (const [folder, contents] of Object.entries(folders)) {
-        const section = document.createElement('div');
-        section.innerHTML = `<h3>${folder}</h3>`;
-
-        // Fetch text.md — fail gracefully per folder
-        if (contents.text) {
-          try {
-            const rawUrl = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${contents.text}`;
-            const mdText = await fetch(rawUrl).then(r => {
-              if (!r.ok) throw new Error(`HTTP ${r.status}`);
-              return r.text();
-            });
-            const p = document.createElement('p');
-            p.textContent = mdText;
-            section.appendChild(p);
-          } catch (e) {
-            console.warn(`Could not load text.md for ${folder}:`, e);
+        } else {
+          if (!current.children[part]) {
+            current.children[part] = { name: part, children: {}, files: [], text: null };
           }
+          current = current.children[part];
         }
-
-        // Download list
-        if (contents.files.length > 0) {
-          const ul = document.createElement('ul');
-          contents.files.forEach(file => {
-            const rawUrl = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${file.path}`;
-            ul.innerHTML += `<li><a href="${rawUrl}" download="${file.name}">${file.name}</a></li>`;
-          });
-          section.appendChild(ul);
-        }
-
-        container.appendChild(section);
-      }
-
-      if (container.children.length === 0) {
-        container.innerHTML = '<em>No toolkit folders found.</em>';
-      }
-    })
-    .catch(err => {
-      document.getElementById('toolkit').innerHTML =
-        `<strong>Error:</strong> <code>${err.message}</code>`;
+      });
     });
+
+  return root;
+}
+
+async function fetchAllTexts(folder) {
+  const promises = [];
+
+  function collect(node) {
+    if (node.text) {
+      const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${node.text}`;
+      promises.push(
+        fetch(url)
+          .then(r => r.ok ? r.text() : '')
+          .then(text => node.textContent = text)
+          .catch(() => node.textContent = '')
+      );
+    }
+    Object.values(node.children).forEach(collect);
+  }
+
+  collect(folder);
+  await Promise.all(promises);
+}
+
+function createSafeTextElement(tag, text) {
+  const el = document.createElement(tag);
+  el.textContent = text;
+  return el;
+}
+
+function render(folder, container) {
+  const section = document.createElement('div');
+
+  section.appendChild(createSafeTextElement('h3', folder.name));
+
+  if (folder.textContent) {
+    section.appendChild(createSafeTextElement('p', folder.textContent));
+  }
+
+  if (folder.files.length > 0) {
+    const ul = document.createElement('ul');
+
+    folder.files
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach(file => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+
+        a.href = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${file.path}`;
+        a.textContent = file.name;
+        a.download = file.name;
+
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+
+    section.appendChild(ul);
+  }
+
+  Object.values(folder.children)
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach(child => render(child, section));
+
+  container.appendChild(section);
+}
+
+async function init() {
+  try {
+    const container = document.getElementById('toolkit-dynamic');
+    container.innerHTML = 'Loading...';
+
+    const data = await fetchTree();
+
+    if (data.truncated) {
+      console.warn('GitHub tree truncated. Results may be incomplete.');
+    }
+
+    const tree = buildTree(data.tree);
+
+    await fetchAllTexts(tree);
+
+    container.innerHTML = '';
+    render(tree, container);
+
+    if (container.children.length === 0) {
+      container.textContent = 'No toolkit content found.';
+    }
+
+  } catch (err) {
+    document.getElementById('toolkit').innerHTML =
+      `<strong>Error:</strong> <code>${err.message}</code>`;
+  }
+}
+
+init();
 </script>
