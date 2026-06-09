@@ -128,12 +128,14 @@ async function fetchAllTexts(root) {
 }
 
 // Opbouwen van de site 
-function render(folder, container) {
+function render(folder, container, showHeading = true) {
   const section = document.createElement('div');
 
-  const title = document.createElement('h3');
-  title.textContent = folder.name;
-  section.appendChild(title);
+  if (showHeading) {
+    const title = document.createElement('h3');
+    title.textContent = folder.name;
+    section.appendChild(title);
+  }
 
   if (folder.textContent) {
     const p = document.createElement('p');
@@ -150,7 +152,7 @@ function render(folder, container) {
         const li = document.createElement('li');
         const a = document.createElement('a');
 
-        a.href = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${file.path}`;
+        a.href = file.path;     
         a.textContent = file.name;
         a.download = file.name;
 
@@ -163,7 +165,7 @@ function render(folder, container) {
 
   Object.values(folder.children)
     .sort((a, b) => a.name.localeCompare(b.name))
-    .forEach(child => render(child, section));
+    .forEach(child => render(child, section, true));
 
   container.appendChild(section);
 }
