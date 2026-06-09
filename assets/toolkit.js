@@ -17,7 +17,7 @@ async function init() {
   }
 
   try {
-    container.textContent = 'Loading...';
+    container.textContent = 'Aan het laden...';
 
     const data = await fetchTree();
 
@@ -37,10 +37,11 @@ async function init() {
     }
 
   } catch (err) {
-    container.innerHTML = `<strong>Error:</strong> <code>${err.message}</code>`;
+    container.innerHTML = `<strong>Foutmelding, neem even contact op via projecttic@accessibility.nl:</strong> <code>${err.message}</code>`;
   }
 }
 
+// We halen alle info op, dit doen we een keer om de API niet te belasten, daarom slaan we dit lokaal op. 
 async function fetchTree() {
   const cached = localStorage.getItem(CACHE_KEY);
 
@@ -66,6 +67,7 @@ async function fetchTree() {
   return data;
 }
 
+// We maken een lijst van de info om te tonen. Let op: als er een text.md bestand staat dan lezen we deze om extra info per mapje te kunnen geven. 
 function buildTree(treeData) {
   const root = { name: ROOT, children: {}, files: [], text: null };
 
@@ -101,6 +103,7 @@ function buildTree(treeData) {
   return root;
 }
 
+// We verzamelen alle tekstjes
 async function fetchAllTexts(root) {
   const tasks = [];
 
@@ -124,6 +127,7 @@ async function fetchAllTexts(root) {
   await Promise.all(tasks);
 }
 
+// Opbouwen van de site 
 function render(folder, container) {
   const section = document.createElement('div');
 
