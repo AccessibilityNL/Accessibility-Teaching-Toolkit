@@ -30,7 +30,7 @@ async function init() {
     await fetchAllTexts(tree);
 
     container.innerHTML = '';
-    render(tree, container);
+    render(tree, container, false);
 
     if (container.children.length === 0) {
       container.textContent = 'No toolkit content found';
