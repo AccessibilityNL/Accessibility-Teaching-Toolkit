@@ -1,1 +1,0 @@
-Onderstaande presentaties zijn algemene versies van presentaties die wij geven in gastcolleges. 
