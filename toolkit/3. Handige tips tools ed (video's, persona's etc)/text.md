@@ -1,2 +1,0 @@
-In deze folder vind je allerlei andere tools en tips om jouw lessen over toegankelijkheid te verbeteren.
-Ook vind je hier het peerfeedback formulier, dit formulier kan gebruikt worden bij projecten om studenten elkaars werk te laten toetsen
