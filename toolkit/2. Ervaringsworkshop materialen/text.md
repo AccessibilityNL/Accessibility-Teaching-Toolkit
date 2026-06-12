@@ -1,0 +1,2 @@
+Een ervaringsworkshop is een interactieve sessie waarbij je de studenten zelf laat ervaren hoe het is om een beperking te hebben. 
+Voor meer informatie over deze materialen, zie het document Ervaringsworkshop - Een korte toelichting. 
