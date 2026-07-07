@@ -138,9 +138,9 @@ function render(folder, container, showHeading = true) {
   }
 
   if (folder.textContent) {
-    const p = document.createElement('p');
-    p.textContent = folder.textContent;
-    section.appendChild(p);
+    const markdown = document.createElement('div');
+    markdown.innerHTML = marked.parse(folder.textContent);
+    section.appendChild(markdown);
   }
 
   if (folder.files.length > 0) {
