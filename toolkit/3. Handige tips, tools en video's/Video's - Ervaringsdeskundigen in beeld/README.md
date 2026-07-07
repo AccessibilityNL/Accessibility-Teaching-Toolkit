@@ -6,7 +6,7 @@
 - [Carla digitaal](https://youtu.be/7ftrnHflwNc) (Fysiek)
 - [Monique fysiek](https://youtu.be/pCx-bSOKQuQ) (Slechtziend & Energie)
 - [Monique digitaal](https://youtu.be/nLCaOM--nmI) (Slechtziend & Energie)
-- [Guido fysiek](https://youtu.be/jzgxZMKz0hc0 (Autisme)
+- [Guido fysiek](https://youtu.be/jzgxZMKz0hc0) (Autisme)
 - [Guido digitaal](https://youtu.be/n-THllg0cf4) (Autisme)
 - [Martijn fysiek](https://youtu.be/fftI4vIL9FM) (Slechtziend)
 - [Martijn digitaal](https://youtu.be/X1EitmDEcvw) (Slechtziend) 
