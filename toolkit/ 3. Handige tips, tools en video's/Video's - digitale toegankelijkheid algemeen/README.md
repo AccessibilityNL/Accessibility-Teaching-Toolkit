@@ -1,0 +1,2 @@
+- [Wat is Digitale Toegankelijkheid?](https://youtu.be/E0t_y6Y03Ss)
+- [Video over European Accessibility Act](https://youtu.be/3TZVODX-lAo)
