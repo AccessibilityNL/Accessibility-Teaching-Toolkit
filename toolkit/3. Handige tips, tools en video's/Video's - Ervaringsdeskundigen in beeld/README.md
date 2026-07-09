@@ -1,6 +1,6 @@
 - [Ellen fysiek](https://youtu.be/OV6MZhGyFTA) (Blind)
 - [Ellen digitaal](https://youtu.be/0O8dpjiXTaU) (Blind)
-- [Naduah fysiek](https://youtu.be/pvRzT4zu3yM)(Fysiek & Energie)
+- [Naduah fysiek](https://youtu.be/pvRzT4zu3yM) (Fysiek & Energie)
 - [Naduah digitaal](https://youtu.be/35M5BqQa1yE) (Fysiek & Energie)
 - [Carla fysiek](https://youtu.be/7dhKbjM7gqA) (Fysiek)
 - [Carla digitaal](https://youtu.be/7ftrnHflwNc) (Fysiek)
