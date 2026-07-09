@@ -81,7 +81,7 @@ function buildTree(treeData) {
         const isFile = index === parts.length - 1;
 
         if (isFile) {
-          if (part === 'README.md') {
+          if (part === 'README.md' || part === 'README.MD') {
             current.text = item.path;
           } else {
             current.files.push({ name: part, path: item.path });
