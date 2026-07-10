@@ -1,0 +1,3 @@
+De materialen zijn ontwikkeld door Stichting Accessibility in het kader van het project Toegankelijkheid in Curriculum. Het project is mede mogelijk gemaakt door het Bartiméus Fonds.
+
+De toolkit bestaat uit presentaties over digitale toegankelijkheid en inclusief ontwerpen, materialen voor het organiseren van een ervaringsworkshop en tools en tips. Het betrekken van een ervaringsdeskundige is belangrijk zowel bij een presentatie over toegankelijkheid als bij een ervaringsworkshop. In onderstaand document Betrek een ervaringsdeskundige lees je waar je rekening mee moet houden. In het document Ervaringsworkshop – een korte toelichting lees je hoe je een ervaringsworkshop vorm kunt geven.  
