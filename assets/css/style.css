@@ -1,0 +1,195 @@
+:root {
+    --outline-offset: .2rem;
+    --negative-outline: -.5rem;
+}
+
+html {
+    display: flex;
+    min-height: 100%;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    max-width: 2930px;
+    margin: 0 auto;
+    scroll-behavior: smooth;
+}
+
+body { 
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    color: #1a2e83;
+    font-size: 1.6rem;
+    line-height: 1.875;
+    font-family: Muli;
+    background-color: #d9ebf7;
+    font-weight: 600;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #2b50ec;
+    font-weight: 800;
+}
+
+h1 {
+    font-size: 3.6rem;
+    line-height: 1.44;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.4;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 2.1rem;
+    line-height: 1.4;
+    margin-top: 3rem;
+    margin-bottom: .5rem;
+}
+
+ul {
+    list-style: none;
+    margin: 2rem 0 0 0;
+    padding: 0;
+}
+
+ul  li{
+    position: relative;
+    padding-left: 3rem;
+}
+
+ul li:before {
+    content: "\200B";
+    position: absolute;
+}
+
+ul li a {
+    transition: all .2s ease;
+    text-decoration: none;
+    color: currentColor;
+    text-decoration: none;
+    border-bottom: .1rem solid currentColor;
+}
+
+ul li:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    order: -1;
+    flex-shrink: 0;
+    margin: 0 1.25rem 0 0;
+    content: "";
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 1.8rem 1.2rem;
+    background-position: center center;
+    padding: 0;
+    width: 1.8rem;
+    height: 1.2rem;
+    height: 3.2rem;
+    background-image: url(/assets/img/arrow-blue.svg);
+}
+
+p { 
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+header {
+    padding: 7rem 0 17rem 0;
+     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    background-image: linear-gradient(365deg, #fff 15%, rgba(255, 255, 255, 0) 15.2%), linear-gradient(350deg, #1fc396 15%, rgba(255, 255, 255, 0) 15.1%);
+    background-color: #2b50ec;
+}
+
+header > div {
+    position: relative;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5rem 8.47458%;
+}
+
+header h1 {
+    color: #fff;
+}
+
+header p {
+    color: #fff;
+    font-size: 2.1rem;
+    line-height: 1.875;
+    font-weight: 600;
+}
+
+header #logo {
+    position:absolute;
+    top: 1rem;
+    left: 5vw;
+    z-index: 3;
+}
+
+.body-content {
+    margin-top: -10rem;
+    position: relative;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10em;
+    padding: 5rem 8.47458%;
+    background-color: #fff;
+}
+
+@font-face {
+    font-family: Muli;
+    src: url(/assets/fonts/Muli-Italic.eot);
+    src: url(/assets/fonts/Muli-Italic.eot#iefix) format("embedded-opentype"),url(/assets/fonts/Muli-Italic.woff2) format("woff2"),url(/assets/fonts/Muli-Italic.woff) format("woff");
+    font-weight: 400;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Muli;
+    src: url(/assets/fonts/Muli-Regular.eot);
+    src: url(/assets/fonts/Muli-Regular.eot#iefix) format("embedded-opentype"),url(/assets/fonts/Muli-Regular.woff2) format("woff2"),url(/assets/fonts/Muli-Regular.woff) format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Muli;
+    src: url(/assets/fonts/Muli-SemiBold.eot);
+    src: url(/assets/fonts/Muli-SemiBold.eot#iefix) format("embedded-opentype"),url(/assets/fonts/Muli-SemiBold.woff2) format("woff2"),url(/assets/fonts/Muli-SemiBold.woff) format("woff");
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Muli;
+    src: url(/assets/fonts/Muli-Bold.eot);
+    src: url(/assets/fonts/Muli-Bold.eot#iefix) format("embedded-opentype"),url(/assets/fonts/Muli-Bold.woff2) format("woff2"),url(/assets/fonts/Muli-Bold.woff) format("woff");
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Muli;
+    src: url(/assets/fonts/Muli-ExtraBold.eot);
+    src: url(/assets/fonts/Muli-ExtraBold.eot#iefix) format("embedded-opentype"),url(/assets/fonts/Muli-ExtraBold.woff2) format("woff2"),url(/assets/fonts/Muli-ExtraBold.woff) format("woff");
+    font-weight: 800;
+    font-style: normal
+}
