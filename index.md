@@ -1,16 +1,8 @@
 ---
 title: Accessibility Toolkit
 ---
-<header>
-    <a href="https://accessibility.nl" title="Stichting Accessibility" rel="home" id="logo">
-        <img width="256" height="64" src="{{ site.baseurl }}/assets/img/logo.svg" alt="Logo Accessibility, onderdeel van Bartimeus">
-    </a>
-    <div>
-    # Toolkit 
-    Deze Toolkit ondersteunt docenten bij het integreren van digitale toegankelijkheid in onderwijs. De materialen zijn ontwikkeld door Stichting Accessibility in het kader van het project Toegankelijkheid in Curriculum. Het project is mede mogelijk gemaakt door het Bartiméus Fonds.
-    Voor vragen: projecttic@accessibility.nl 
-    </div>
-</header>
+
+{% include header.html %}
 
 <div class="body-content">
 
