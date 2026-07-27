@@ -28,7 +28,7 @@ body {
     margin: 0;
 }
 
-body > h1 {
+body h1:first {
     display: none;
 }
 
