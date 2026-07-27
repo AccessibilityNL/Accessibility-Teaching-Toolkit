@@ -12,4 +12,4 @@ De toolkit is opgebouwd aan de hand van de door Stichting Accessibility opgebouw
 ## Materialen
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> 
 <script src="{{ 'assets/toolkit.js' | relative_url }}"></script>
-<div id="toolkit-dynamic"></div>
+<div id="toolkit-dynamic" class="body-content"></div>
