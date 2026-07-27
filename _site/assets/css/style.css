@@ -28,6 +28,10 @@ body {
     margin: 0;
 }
 
+body > h1 {
+    display: none;
+}
+
 h1,
 h2,
 h3,
