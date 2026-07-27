@@ -28,10 +28,6 @@ body {
     margin: 0;
 }
 
-body h1:first {
-    display: none;
-}
-
 h1,
 h2,
 h3,
