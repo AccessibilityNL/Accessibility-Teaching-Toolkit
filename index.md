@@ -7,6 +7,7 @@ title: Accessibility Toolkit
 <div class="body-content">
 
 <div markdown="1">
+
 ## Hoe te gebruiken?
 Deze toolkit bevat verschillende materialen die kunnen helpen bij het opzetten en uitvoeren van de lessen rondom digitale toegankelijkheid. 
 De toolkit is opgebouwd aan de hand van de door Stichting Accessibility opgebouwde leerdoelen. 
