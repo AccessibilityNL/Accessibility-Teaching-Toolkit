@@ -1,12 +1,15 @@
 <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
 
 <style>
+    ul li:after {
+        background-image: url("{{ site.baseurl }}/assets/img/arrow-blue.svg");
+    }
     @font-face {
-    font-family: Muli;
-    src: url("{{ site.baseurl }}/assets/fonts/Muli-Italic.eot");
-    src: url("{{ site.baseurl }}/assets/fonts/Muli-Italic.eot#iefix") format("embedded-opentype"),url("{{ site.baseurl }}/assets/fonts/Muli-Italic.woff2") format("woff2"),url("{{ site.baseurl }}/assets/fonts/Muli-Italic.woff") format("woff");
-    font-weight: 400;
-    font-style: italic
+        font-family: Muli;
+        src: url("{{ site.baseurl }}/assets/fonts/Muli-Italic.eot");
+        src: url("{{ site.baseurl }}/assets/fonts/Muli-Italic.eot#iefix") format("embedded-opentype"),url("{{ site.baseurl }}/assets/fonts/Muli-Italic.woff2") format("woff2"),url("{{ site.baseurl }}/assets/fonts/Muli-Italic.woff") format("woff");
+        font-weight: 400;
+        font-style: italic
     }
 
     @font-face {
