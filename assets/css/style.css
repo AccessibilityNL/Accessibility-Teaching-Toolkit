@@ -97,7 +97,6 @@ ul li:after {
     width: 1.8rem;
     height: 1.2rem;
     height: 3.2rem;
-    background-image: url(/Accessibility-Teaching-Toolkit/assets/img/arrow-blue.svg);
 }
 
 p { 
@@ -150,6 +149,6 @@ header #logo {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10em;
-    padding: 5rem 8.47458%;
+    padding: 5rem 8.47458% 10rem 8.47458%;
     background-color: #fff;
 }
