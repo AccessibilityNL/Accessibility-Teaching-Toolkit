@@ -1,5 +1,5 @@
 ---
-title: Accessibility Toolkit voor docenten
+title: Stichting Accessibility
 ---
 
 {% include header.html %}
