@@ -1,5 +1,5 @@
 ---
-title: Accessibility Toolkit
+title: Accessibility Toolkit voor docenten
 ---
 
 {% include header.html %}
