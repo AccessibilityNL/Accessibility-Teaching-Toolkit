@@ -14,5 +14,6 @@ Er zijn zes video's gemaakt samen met ervaringsdeskundigen, zij vertellen hun ve
 - [Martijn fysiek](https://youtu.be/fftI4vIL9FM) (Slechtziend)
 - [Martijn digitaal](https://youtu.be/X1EitmDEcvw) (Slechtziend) 
 
+
 Eerder hebben wij ook een gecombineerde video gemaakt waarin drie ervaringsdeskundigen vertellen over hun leven en welke hulpmiddelen zij gebruiken. 
 - [Interviews 3 ervaringsdeskundigen](https://youtu.be/87ZWo_c32GY) ( Blind, Slechthorend & Doof) 
