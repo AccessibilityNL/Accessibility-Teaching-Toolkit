@@ -1,3 +1,5 @@
+Onderstaande video's zijn YouTube links:
+
 - [Ellen fysiek](https://youtu.be/OV6MZhGyFTA) (Blind)
 - [Ellen digitaal](https://youtu.be/0O8dpjiXTaU) (Blind)
 - [Naduah fysiek](https://youtu.be/pvRzT4zu3yM)(Fysiek & Energie)
